@@ -9,7 +9,7 @@
 4. Change the connection string in the appsettings.json to the proper database you created. For ex: 
 "DefaultConnection": "server=localhost;database=test;trusted_connection=true;TrustServerCertificate=true".
 
-5. In the your Nuget Package Manager, install Microsoft.Data.SqlClient 5.2.1.
+5. In the Nuget Package Manager, install Microsoft.Data.SqlClient 5.2.1.
 
 6. Run the solution, which starts the API.
 
