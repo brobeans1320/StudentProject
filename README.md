@@ -15,4 +15,4 @@
 
 7. This project uses Angular 16.2. Ensure you have a compatible Node.Js version installed: https://v17.angular.io/guide/versions. If you use nvm (Node Package Runner), simply run ``$nvm install 18.10.0`` in your terminal.
 
-8. Finally, start the Angular project.
+8. Finally, start the Angular project. ``$npx ng serve`` if using nvm, or ``ng serve`` if using npm.
