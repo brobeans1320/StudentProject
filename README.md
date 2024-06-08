@@ -13,6 +13,6 @@
 
 6. Run the solution, which starts the API.
 
-7. This project uses Angular 16.2. Ensure you have a compatible Node.Js version installed: https://v17.angular.io/guide/versions. If you use nvm (npm package runner), simply run ``nvm install 18.10.0`` in your terminal.
+7. This project uses Angular 16.2. Ensure you have a compatible Node.js version installed: https://angular.dev/reference/versions. If you use nvm (Node Version Manager), simply run ``nvm install 18.10.0`` in your terminal.
 
-8. Finally, start the Angular project. ``npx ng serve`` if using nvm, or ``ng serve`` if using npm.
+8. Finally, start the Angular project. In a terminal, navigate to the /StudentUI folder, and run ``npx ng serve`` if using nvm, or ``ng serve`` if using npm.
