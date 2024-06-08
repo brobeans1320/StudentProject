@@ -11,6 +11,6 @@
 
 6. Run the solution, which starts the API.
 
-7. This project uses Angular 16.2. Ensure you have a compatible Node.Js version installed: https://v17.angular.io/guide/versions. If you use nvm (Node Package Runner), simply run $nvm install 18.10.0 in your terminal.
+7. This project uses Angular 16.2. Ensure you have a compatible Node.Js version installed: https://v17.angular.io/guide/versions. If you use nvm (Node Package Runner), simply run ``$nvm install 18.10.0`` in your terminal.
 
 8. Finally, start the Angular project.
