@@ -1,0 +1,20 @@
+.student-table-container {
+  margin: 20px;
+}
+
+.form-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}

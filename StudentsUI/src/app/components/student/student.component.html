@@ -1,0 +1,226 @@
+<!-- Main student table -->
+<div class="student-table-container">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. Biology"
+      #input
+    />
+  </mat-form-field>
+
+  <button mat-button (click)="showCreateForm()">Create New Student</button>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+      <td mat-cell *matCellDef="let student" (click)="selectStudent(student)">
+        {{ student.firstName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+      <td mat-cell *matCellDef="let student" (click)="selectStudent(student)">
+        {{ student.lastName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="major">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Major</th>
+      <td mat-cell *matCellDef="let student" (click)="selectStudent(student)">
+        {{ student.major }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let student">
+        <button mat-button (click)="editStudent(student)">Edit</button>
+        <button mat-button (click)="deleteStudent(student)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="selectStudent(row)"
+    ></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+</div>
+
+<!-- Display selected student -->
+<div *ngIf="selectedStudent" class="student-details">
+  <h3>Selected Student Details</h3>
+  <p><strong>First Name:</strong> {{ selectedStudent.firstName }}</p>
+  <p><strong>Last Name:</strong> {{ selectedStudent.lastName }}</p>
+  <p><strong>Major:</strong> {{ selectedStudent.major }}</p>
+  <p>
+    <strong>Date of Birth:</strong> {{ selectedStudent.dateOfBirth | date }}
+  </p>
+  <p><strong>Age:</strong> {{ selectedStudent.age }}</p>
+  <p><strong>GPA:</strong> {{ selectedStudent.gpa }}</p>
+</div>
+
+<!-- Create student form -->
+<div *ngIf="isCreateStudent" class="form-container">
+  <h3>Create New Student</h3>
+  <form (ngSubmit)="submitCreateStudentForm()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="newStudent.firstName"
+        name="firstName"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="newStudent.lastName"
+        name="lastName"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Major</mat-label>
+      <input matInput [(ngModel)]="newStudent.major" name="major" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Date of Birth</mat-label>
+      <input
+        matInput
+        [(ngModel)]="newStudent.dateOfBirth"
+        name="dateOfBirth"
+        type="date"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Age</mat-label>
+      <input
+        matInput
+        [(ngModel)]="newStudent.age"
+        name="age"
+        type="number"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>GPA</mat-label>
+      <input
+        matInput
+        [(ngModel)]="newStudent.gpa"
+        name="gpa"
+        type="number"
+        step="0.01"
+        required
+      />
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit">Create</button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="cancelCreate()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Edit student form -->
+<div *ngIf="isEditStudent" class="form-container">
+  <h3>Edit Student</h3>
+  <form (ngSubmit)="updateStudent()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="selectedStudent.firstName"
+        name="firstName"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="selectedStudent.lastName"
+        name="lastName"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Major</mat-label>
+      <input
+        matInput
+        [(ngModel)]="selectedStudent.major"
+        name="major"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Date of Birth</mat-label>
+      <input
+        matInput
+        [(ngModel)]="selectedStudent.dateOfBirth"
+        name="dateOfBirth"
+        type="date"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Age</mat-label>
+      <input
+        matInput
+        [(ngModel)]="selectedStudent.age"
+        name="age"
+        type="number"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>GPA</mat-label>
+      <input
+        matInput
+        [(ngModel)]="selectedStudent.gpa"
+        name="gpa"
+        type="number"
+        step="0.01"
+        required
+      />
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="cancelEdit()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

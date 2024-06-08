@@ -1,0 +1,12 @@
+<mat-sidenav-container class="student-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/students">Student Table</a>
+      <a mat-list-item routerLink="/graphs">Graphs</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
